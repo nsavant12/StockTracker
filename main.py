@@ -3,15 +3,15 @@ import json
 
 
 def stock_data(stock_symbol):
-    # Use the requests library to make a GET request to the Alpha Vantage API
+    # Use the alphaAvantage API to get stock data
     url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={stock_symbol}&apikey=56HHQ94E7AC0CFXM"
     response = requests.get(url)
     data = json.loads(response.text)
 
-    # Extract the most recent data from the response
+    # get most recent stock data
     latest_data = data['Time Series (Daily)'][list(data['Time Series (Daily)'].keys())[0]]
 
-    # Print the data to the user
+    # Print stock info
     print(f"Stock Symbol: {stock_symbol}")
     print(f"Latest Open: ${latest_data['1. open']}")
     print(f"Latest Close: ${latest_data['4. close']}")
@@ -19,8 +19,8 @@ def stock_data(stock_symbol):
     print(f"Latest Low: ${latest_data['3. low']}")
 
 
-# Ask the user for a stock symbol
+# ask user for stock
 stock_symbol = input("Enter a stock symbol: ")
 
-# Call the stock_data function with the user's input
+#retrieve stock inputed by user
 stock_data(stock_symbol.upper())
